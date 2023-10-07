@@ -116,9 +116,8 @@ class NavBar extends StatelessWidget {
             Divider(),
             Weather(),
             SizedBox(
-
-                // height: 20,
-                ),
+              height: 20,
+            ),
             Divider(),
             SizedBox(
               height: 20,
