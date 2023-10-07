@@ -3,9 +3,10 @@ import 'Heart/heart.dart';
 // import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:firebase_core/firebase_core.dart';
 // ignore: unused_import
+import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'package:firebase_database/firebase_database.dart';
 // ignore: unused_import
-import 'Weather/main.dart';
+// import 'Weather/main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        drawer: const NavBar(),
+        drawer: NavBar(),
         appBar: AppBar(
           actions: const [
             Padding(
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           ],
           centerTitle: true,
           title: const Text(
-            'TRƯỜNG THPT BẮC YÊN THÀNH ',
+            'Smart Health - P.Care',
             style: TextStyle(
               fontStyle: FontStyle.normal,
               color: Colors.red,
@@ -186,7 +187,7 @@ class MyPage extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          color: Color.fromARGB(255, 229, 223, 223),
+          color: const Color.fromARGB(255, 229, 223, 223),
         ),
         Center(
           child: Container(
