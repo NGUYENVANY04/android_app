@@ -13,149 +13,83 @@ void main() async {
       appId: "1:91527969026:web:0e06fa61f338990f14ea1b",
     ),
   );
-  runApp(const Myapp());
+  runApp(LivingRoomViewModel() as Widget);
 }
 
-class Myapp extends StatefulWidget {
-  const Myapp({Key? key}) : super(key: key);
-
-  @override
-  State<Myapp> createState() => _MyappState();
-}
-
-class _MyappState extends State<Myapp> {
-  final data = FirebaseDatabase.instance.ref("user");
-  final auth = FirebaseDatabase.instance;
-
-  late String displayText;
-// cần initsate vì nó sẽ tự động đọc những thay đổi trong firebase dù không có
-// thao tác crud
-  @override
-  void initState() {
-    super.initState();
-    readdata();
+class LivingRoomViewModel extends ChangeNotifier {
+  LivingRoomViewModel() : super() {
+    getLightData();
   }
 
-// đây là thao tác lấy dữ liệu và gán nó vào hàm setstate
-  readdata() {
-    data.child('state').onValue.listen((event) {
-      final data = event.snapshot.value;
-      if (data == true) {
-        setState(() {
-          displayText = 'State of device is ON';
-        });
-      } else {
-        setState(() {
-          displayText = 'State of device is OFF';
-        });
-      }
-    });
+  DatabaseReference ledRef = FirebaseDatabase.instance.ref('led');
+
+  List<DeviceModel> devices = [
+    DeviceModel(
+        name: 'Smart Spotlight',
+        isActive: false,
+        color: "#ff5f5f",
+        icon: 'assets/svg/light.svg'),
+    DeviceModel(
+        name: 'Smart AC',
+        isActive: true,
+        color: "#7739ff",
+        icon: 'assets/svg/ac.svg'),
+    DeviceModel(
+        name: 'Smart TV',
+        isActive: false,
+        color: "#c9c306",
+        icon: 'assets/svg/tv.svg'),
+    DeviceModel(
+        name: 'Smart Sound',
+        isActive: false,
+        color: "#c207db",
+        icon: 'assets/svg/speaker.svg'),
+  ];
+
+  bool isShow = false;
+
+  void getLightData() {
+    log("XXXXx");
+    try {
+      DatabaseReference starCountRef = FirebaseDatabase.instance.ref('led');
+      starCountRef.onValue.listen(
+        (DatabaseEvent event) {
+          final data = event.snapshot.value;
+          // roomTemp = int.parse(data.toString());
+
+          log(data.toString());
+          if (data == 1) {
+            devices[0].isActive = true;
+          } else {
+            devices[0].isActive = false;
+          }
+          notifyListeners();
+        },
+      );
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
-// thao tác viết dữ liệu vào firebase
-  void writeUserData() {
-    data.set({
-      "state": true,
-    });
+  void showMore() {
+    isShow = !isShow;
+    notifyListeners();
   }
 
-// thao tác xóa
-  void removeUserData() {
-    data.remove();
-  }
-
-// thao tác update
-  void off() {
-    data.update({
-      "state": false,
-    });
-  }
-
-  void on() {
-    data.update({
-      "state": true,
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: const Text(
-              'Ứng dụng điều khiển đèn gia đình',
-              style: TextStyle(
-                color: Color.fromARGB(255, 250, 248, 248),
-              ),
-            ),
-            leading: const Icon(
-              Icons.light,
-              color: Colors.black,
-              size: 50,
-            ),
-            actions: const [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.home_outlined,
-                    color: Colors.black,
-                  ),
-                ],
-              )
-            ],
-            backgroundColor: const Color.fromARGB(255, 35, 76, 159),
-            shape: const ContinuousRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom:
-                    Radius.circular(30), // Đặt bán kính bo tròn cho phần dưới
-              ),
-            ),
-            bottom: const TabBar(tabs: [
-              Tab(text: 'Đèn sân ', icon: Icon(Icons.light_mode_rounded)),
-              Tab(text: 'Đèn nhà', icon: Icon(Icons.light_rounded)),
-              Tab(text: 'Trạng thái', icon: Icon(Icons.lightbulb)),
-            ]),
-          ),
-          body: TabBarView(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      'https://cdn.tgdd.vn/Files/2020/01/03/1229859/thiet-bi-nha-thong-minh-smarthome-la-gi-tai-sao-no-se-tro-thanh-xu-huong-cua-tuong-lai-.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: IconButton(
-                  onPressed: on,
-                  icon: const Icon(Icons.light_mode_sharp),
-                ),
-              ),
-              Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      'https://cdn.tgdd.vn/Files/2020/01/03/1229859/thiet-bi-nha-thong-minh-smarthome-la-gi-tai-sao-no-se-tro-thanh-xu-huong-cua-tuong-lai-.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                child: IconButton(
-                  onPressed: off,
-                  icon: const Icon(Icons.lightbulb_outlined),
-                ),
-              ),
-              Text(displayText),
-            ],
-          ),
-        ),
-      ),
+  void changeDevices(int index) {
+    devices[index] = DeviceModel(
+      name: devices[index].name,
+      isActive: !devices[index].isActive,
+      color: devices[index].color,
+      icon: devices[index].icon,
     );
+    if (index == 0) {
+      if (devices[index].isActive) {
+        ledRef.set(1);
+      } else {
+        ledRef.set(0);
+      }
+    }
+    notifyListeners();
   }
 }

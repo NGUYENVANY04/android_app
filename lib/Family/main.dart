@@ -24,7 +24,7 @@ class Myapp extends StatefulWidget {
 }
 
 class _MyappState extends State<Myapp> {
-  final data = FirebaseDatabase.instance.ref("user");
+  final data = FirebaseDatabase.instance.ref();
   final auth = FirebaseDatabase.instance;
 
   late String displayText;
@@ -38,13 +38,13 @@ class _MyappState extends State<Myapp> {
 
 // đây là thao tác lấy dữ liệu và gán nó vào hàm setstate
   readdata() {
-    data.child('state').onValue.listen((event) {
+    data.child("led").onValue.listen((event) {
       final data = event.snapshot.value;
-      if (data == true) {
+      if (data == 1) {
         setState(() {
           displayText = 'State of device is ON $data';
         });
-      } else {
+      } else if (data == 0) {
         setState(() {
           displayText = 'State of device is OFF';
         });
@@ -67,13 +67,13 @@ class _MyappState extends State<Myapp> {
 // thao tác update
   void off() {
     data.update({
-      "state": false,
+      "led": 0,
     });
   }
 
   void on() {
     data.update({
-      "state": true,
+      "led": 1,
     });
   }
 
