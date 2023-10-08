@@ -1,4 +1,4 @@
-import 'package:android_app/Project/KHKT/page/howtouse.dart';
+import 'package:android_app/KHKT/page/howtouse.dart';
 import 'package:flutter/material.dart';
 import 'howtouse.dart';
 

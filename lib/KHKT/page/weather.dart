@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -50,11 +49,13 @@ class _WeatherState extends State<Weather> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(
-          'Current temperature: $temperature',
-          style: const TextStyle(fontSize: 20),
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text(
+            'Current temperature: $temperature',
+            style: const TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );

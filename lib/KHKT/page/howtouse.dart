@@ -1,4 +1,4 @@
-import 'package:android_app/Project/KHKT/page/weather.dart';
+import 'package:android_app/KHKT/page/weather.dart';
 import 'package:flutter/material.dart';
 
 class Use extends StatelessWidget {
