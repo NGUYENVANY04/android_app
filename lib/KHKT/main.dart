@@ -134,6 +134,7 @@ class NavBar extends StatelessWidget {
                     builder: (context) => State_House(),
                   )),
             ),
+
             const SizedBox(
               height: 20,
             ),
