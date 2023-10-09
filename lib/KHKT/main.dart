@@ -6,7 +6,7 @@ import 'package:android_app/KHKT/page/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'home.dart';
+// import 'hom/e.dart';
 
 // import 'p';
 void main() async {
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
           // backgroundColor: const Color.fromARGB(255, 99, 82, 87),
           elevation: 20,
         ),
-        body: const MyPage(),
+        // body: const MyPage(),
       ),
     );
   }
