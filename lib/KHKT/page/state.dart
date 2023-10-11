@@ -117,7 +117,7 @@ class _State_HouseState extends State<State_House> {
                                 color: Color.fromARGB(255, 146, 114,
                                     114), // Tăng giá trị alpha từ 31 lên 255
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                               child: Center(
                                   child:
@@ -150,7 +150,7 @@ class _State_HouseState extends State<State_House> {
                                 color: Color.fromARGB(255, 146, 114,
                                     114), // Tăng giá trị alpha từ 31 lên 255
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                               child: Center(child: Text(gas)),
                             ),
@@ -181,7 +181,7 @@ class _State_HouseState extends State<State_House> {
                                 color: Color.fromARGB(255, 146, 114,
                                     114), // Tăng giá trị alpha từ 31 lên 255
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                               child: Center(child: Text(water)),
                             ),
@@ -212,7 +212,7 @@ class _State_HouseState extends State<State_House> {
                                 color: Color.fromARGB(255, 146, 114,
                                     114), // Tăng giá trị alpha từ 31 lên 255
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(30)),
+                                    BorderRadius.all(Radius.circular(20)),
                               ),
                               child: Center(child: Text(fire)),
                             ),

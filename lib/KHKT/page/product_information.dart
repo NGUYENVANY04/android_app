@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Use());
+  runApp(const Product());
 }
 
-class Use extends StatefulWidget {
-  const Use({super.key});
+class Product extends StatefulWidget {
+  const Product({super.key});
 
   @override
-  State<Use> createState() => _UseState();
+  State<Product> createState() => _ProductState();
 }
 
-class _UseState extends State<Use> {
+class _ProductState extends State<Product> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +25,7 @@ class _UseState extends State<Use> {
               children: [
                 Container(
                   height: 150,
-                  width: 450,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
@@ -48,8 +48,8 @@ Sử dụng những chức năng cơ bản nhưng mang lại hiệu quả cho ng
                   height: 40,
                 ),
                 Container(
-                  height: 140,
-                  width: 420,
+                  height: 150,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
@@ -73,32 +73,7 @@ Sử dụng những chức năng cơ bản nhưng mang lại hiệu quả cho ng
                   height: 40,
                 ),
                 Container(
-                  height: 130,
-                  width: 390,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: const Center(
-                    // Căn giữa nội dung trong Container
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        """Xử lí tình huống khẩn cấp :
-             Cung cấp cho người sử dụng những kĩ năng cơ bản , cần thiết 
-            trong việc ứng phó với họa hoạn. 
-            Mục đích giảm tối đa thương vong , thiệt hại cho người và tài sản .  .""",
-                        textAlign:
-                            TextAlign.center, // Căn giữa theo chiều ngang
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  height: 160,
+                  height: 200,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -108,6 +83,9 @@ Sử dụng những chức năng cơ bản nhưng mang lại hiệu quả cho ng
                       fit: BoxFit.cover,
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 40,
                 ),
               ],
             ),

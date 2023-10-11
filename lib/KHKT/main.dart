@@ -1,4 +1,5 @@
 import 'package:android_app/KHKT/page/dashboard.dart';
+import 'package:android_app/KHKT/page/product_information.dart';
 import 'package:android_app/KHKT/page/state.dart';
 import 'package:android_app/KHKT/page/howtouse.dart';
 import 'package:android_app/KHKT/page/urgent.dart';
@@ -6,7 +7,7 @@ import 'package:android_app/KHKT/page/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-// import 'hom/e.dart';
+import 'home.dart';
 
 // import 'p';
 void main() async {
@@ -58,7 +59,7 @@ class _MyAppState extends State<MyApp> {
           // backgroundColor: const Color.fromARGB(255, 99, 82, 87),
           elevation: 20,
         ),
-        // body: const MyPage(),
+        body: const MyPage(),
       ),
     );
   }
@@ -98,30 +99,10 @@ class NavBar extends StatelessWidget {
               ),
             ),
             const Divider(),
-            // ListTile(
-            //   leading: const Icon(Icons.device_hub_sharp),
-            //   iconColor: const Color.fromARGB(255, 90, 75, 74),
-            //   subtitle: Text('Trạng thái các thiết bị '),
-            //   title: const Text(
-            //     'State My Device ',
-            //     style: TextStyle(
-            //       color: Color.fromARGB(255, 27, 8, 7),
-            //     ),
-            //   ),
-            //   onTap: () => Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => State_House(),
-            //       )),
-            // ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            // const Divider(),
             ListTile(
               leading: const Icon(Icons.dashboard),
               iconColor: const Color.fromARGB(255, 90, 75, 74),
-              subtitle: Text('Dashboard'),
+              subtitle: const Text('Dashboard'),
               title: const Text(
                 'Bảng điều khiển các thiết bị ',
                 style: TextStyle(
@@ -131,10 +112,9 @@ class NavBar extends StatelessWidget {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => State_House(),
+                    builder: (context) => const State_House(),
                   )),
             ),
-
             const SizedBox(
               height: 20,
             ),
@@ -142,7 +122,7 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.device_hub_sharp),
               iconColor: const Color.fromARGB(255, 90, 75, 74),
-              subtitle: Text('Xử lí tình huống khẩn cấp'),
+              subtitle: const Text('Xử lí tình huống khẩn cấp'),
               title: const Text(
                 'Urgent',
                 style: TextStyle(
@@ -162,7 +142,7 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.cloud),
               iconColor: const Color.fromARGB(255, 90, 75, 74),
-              subtitle: Text('Thông tin thời tiết'),
+              subtitle: const Text('Thông tin thời tiết'),
               title: const Text(
                 'Weather',
                 style: TextStyle(
@@ -182,7 +162,27 @@ class NavBar extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.cloud),
               iconColor: const Color.fromARGB(255, 90, 75, 74),
-              subtitle: Text('Hướng dẫn sử dụng '),
+              subtitle: const Text('Thông tin sản phẩm '),
+              title: const Text(
+                'Product information',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 27, 8, 7),
+                ),
+              ),
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Product())),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 20,
+            ),
+            ListTile(
+              leading: const Icon(Icons.cloud),
+              iconColor: const Color.fromARGB(255, 90, 75, 74),
+              subtitle: const Text('Hướng dẫn sử dụng '),
               title: const Text(
                 'How To Use',
                 style: TextStyle(
